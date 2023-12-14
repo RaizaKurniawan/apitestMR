@@ -1,0 +1,27 @@
+{
+  "name": "apitestbymocha",
+  "version": "1.0.0",
+  "description": "API automation framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "api",
+    "automation",
+    "axios",
+    "mocha",
+    "chai"
+  ],
+  "author": "raizakurniawan",
+  "license": "ISC",
+  "dependencies": {
+    "@faker-js/faker": "^8.3.1",
+    "axios": "^1.6.2",
+    "chai": "^4.3.10",
+    "mocha": "^10.2.0",
+    "mochawesome": "^7.1.3",
+    "properties-reader": "^2.3.0",
+    "rimraf": "^5.0.5"
+  }
+}
