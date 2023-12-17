@@ -24,18 +24,23 @@ input this script into package.json
     }
 }
 
-create env.properties file in folder config
+create env.properties file in folder config, and input the url link
+
 *{
+
     devURI = https://your-api-devurl/
     stagURI = https://your-api-stagurl/
     uatURI = https://your-api-uaturl/
     prodURI = https://your-api-produrl/
+
 }
 
 back to your terminal, then run this command below:
 
 *{  
+
     npm run devtest or npm run stagtest
+
 }
 
 
