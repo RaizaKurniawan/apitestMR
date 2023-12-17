@@ -24,7 +24,7 @@ input this script into package.json
     }
 }
 
-create folder env.properties file in folder config
+create env.properties file in folder config
 *{
     devURI = https://your-api-devurl/
     stagURI = https://your-api-stagurl/
