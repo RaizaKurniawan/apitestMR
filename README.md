@@ -10,20 +10,31 @@ npm install mochawesome
 npm install --save-dev mochawesome
 
 input this script into package.json
+*{
 
-"scripts": {
-    "clean": "rimraf mochawesome-report/",
-    "test": "npm run clean && mocha ./apiMythRepo/ --timeout=30000 --reporter mochawesome",
-    "singletest": "npx mocha ./api-test/asc-desSort.js --timeout=30000",
-    "devtest": "npm run clean && mocha ./apiMythRepo/dev/ --timeout = 30000 --reporter mochawesome",
-    "stagtest": "npm run clean && mocha ./apiMythRepo/stag/ --timeout = 30000 --reporter mochawesome"
+
+    "scripts": {
+        "clean": "rimraf mochawesome-report/",
+        "test": "npm run clean && mocha ./apiMythRepo/ --timeout=30000 --reporter mochawesome",
+        "singletest": "npx mocha ./api-test/asc-desSort.js --timeout=30000",
+        "devtest": "npm run clean && mocha ./apiMythRepo/dev/ --timeout = 30000 --reporter mochawesome",
+        "stagtest": "npm run clean && mocha ./apiMythRepo/stag/ --timeout = 30000 --reporter mochawesome"
+    }
 }
 
+create folder env.properties file in folder config
+*{
+    devURI = https://your-api-devurl/
+    stagURI = https://your-api-stagurl/
+    uatURI = https://your-api-uaturl/
+    prodURI = https://your-api-produrl/
+}
 
 back to your terminal, then run this command below:
 
-npm testdev or npm teststaging
-
+*{  
+    npm run devtest or npm run stagtest
+}
 
 
 
