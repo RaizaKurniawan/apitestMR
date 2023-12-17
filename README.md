@@ -14,11 +14,13 @@ input this script into package.json
 
 
     "scripts": {
-        "clean": "rimraf mochawesome-report/",
-        "test": "npm run clean && mocha ./apiMythRepo/ --timeout=30000 --reporter mochawesome",
-        "singletest": "npx mocha ./api-test/asc-desSort.js --timeout=30000",
-        "devtest": "npm run clean && mocha ./apiMythRepo/dev/ --timeout = 30000 --reporter mochawesome",
-        "stagtest": "npm run clean && mocha ./apiMythRepo/stag/ --timeout = 30000 --reporter mochawesome"
+    "clean": "rimraf mochawesome-report/",
+    "test": "npm run clean && mocha ./apiMythRepo/ --timeout=30000 --reporter mochawesome",
+    "singletest": "npx mocha ./api-test/asc-desSort.js --timeout=30000",
+    "devtest": "npm run clean && mocha ./apiMythRepo/dev/ --timeout=30000 --reporter mochawesome",
+    "stagtest": "npm run clean && mocha ./apiMythRepo/stag/ --timeout=30000 --reporter mochawesome",
+    "uattest": "npm run clean && mocha ./apiMythRepo/uat/ --timeout=30000 --reporter mochawesome",
+    "prodtest": "npm run clean && mocha ./apiMythRepo/prod/ --timeout=30000 --reporter mochawesome"
     }
 }
 
