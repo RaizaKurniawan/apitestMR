@@ -3,11 +3,16 @@ API Test with Mocha JS Chai and Mochawesome for the report
 
 
 on your command
+*{ 
+
 npm install
 npm install mocha
 npm install --save-dev mocha
 npm install mochawesome
 npm install --save-dev mochawesome
+
+
+}
 
 input this script into package.json
 *{
