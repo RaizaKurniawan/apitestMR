@@ -25,6 +25,8 @@
     "@faker-js/faker": "^8.3.1",
     "axios": "^1.6.2",
     "chai": "^4.3.10",
+    "chai-karma-snapshot": "^0.4.2",
+    "chai-snapshot-matcher": "^2.0.3",
     "properties-reader": "^2.3.0",
     "rimraf": "^5.0.5"
   },
