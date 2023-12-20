@@ -10,6 +10,7 @@ npm install mocha
 npm install --save-dev mocha
 npm install mochawesome
 npm install --save-dev mochawesome
+npm install --save-dev mocha chai supertest
 
 
 }

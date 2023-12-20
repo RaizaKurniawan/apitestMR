@@ -24,7 +24,6 @@
   "dependencies": {
     "@faker-js/faker": "^8.3.1",
     "axios": "^1.6.2",
-    "chai": "^4.3.10",
     "chai-jest-snapshot": "^2.0.0",
     "chai-karma-snapshot": "^0.4.2",
     "chai-snapshot-matcher": "^2.0.3",
@@ -33,7 +32,9 @@
     "rimraf": "^5.0.5"
   },
   "devDependencies": {
+    "chai": "^4.3.10",
     "mocha": "^10.2.0",
-    "mochawesome": "^7.1.3"
+    "mochawesome": "^7.1.3",
+    "supertest": "^6.3.3"
   }
 }
