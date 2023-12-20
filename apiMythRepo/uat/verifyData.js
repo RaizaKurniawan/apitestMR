@@ -56,15 +56,16 @@ describe('JSON Matching Test', () => {
                 chai.expect(condos.isConfirmed).to.be.true;
             });
     });
-    it('Dossier UnConfirmed', async() => {
-        const api = supertest(createURL('unconfirmed/dossier'));
-        const response = await api.get('');
+    // Dossier unconfirmed is not avaialable 
+    // it('Dossier UnConfirmed', async() => {
+    //     const api = supertest(createURL('unconfirmed/dossier'));
+    //     const response = await api.get('');
     
-            response.body.data.dossier.forEach(uncondos => {
-                console.log(uncondos.code + " " + uncondos.isConfirmed);
-                chai.expect(uncondos.isConfirmed).to.be.false;
-            });
-    });
+    //         response.body.data.dossier.forEach(uncondos => {
+    //             console.log(uncondos.code + " " + uncondos.isConfirmed);
+    //             chai.expect(uncondos.isConfirmed).to.be.false;
+    //         });
+    // });
 
     it('Addendum Confirmed', async() => {
         const api = supertest(createURL('confirmed/addendum'));
