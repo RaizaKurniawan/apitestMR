@@ -50,9 +50,9 @@ describe('Bad Request to Get query SortBy Top Rated', async() => {
          } catch (error) {
               expect(error.response.status).to.equal(400)    
          }   
-      });
+     });
 
-      it('Bad Request to Get Confirm Dossier Sorting List by Top Rated', async() => {
+     it('Bad Request to Get Confirm Dossier Sorting List by Top Rated', async() => {
         try {
              const res = await axios.get(createURL('confirmed/dossier?sortBy=5'))
              console.log(res.data)
@@ -72,10 +72,9 @@ describe('Bad Request to Get query SortBy Top Rated', async() => {
          } catch (error) {
               expect(error.response.status).to.equal(400)    
          }   
-      });
+     });
 
-
-      it('Bad Request to Get Confirm Addendum Sorting List by Top Rated', async() => {
+     it('Bad Request to Get Confirm Addendum Sorting List by Top Rated', async() => {
         try {
              const res = await axios.get(createURL('confirmed/addendum?sortBy=5'))
              console.log(res.data)
@@ -95,8 +94,6 @@ describe('Bad Request to Get query SortBy Top Rated', async() => {
          } catch (error) {
               expect(error.response.status).to.equal(400)    
          }   
-      });
-
-
+     });
 
 });
