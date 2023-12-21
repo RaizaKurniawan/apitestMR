@@ -35,7 +35,7 @@ describe('Ensure the data has match (Confirmed and Unconfirmed)', () => {
                 chai.expect(confcase.isConfirmed).to.be.true;
             });
     });
-    it.only('Casefile Unconfirmed', async() => {
+    it('Casefile Unconfirmed', async() => {
     const api = supertest(createURL('unconfirmed/casefile'));
     const response = await api.get('');
 
