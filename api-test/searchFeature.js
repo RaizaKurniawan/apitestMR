@@ -18,18 +18,26 @@ describe('Search feature Test', async() => {
         const actualTitle = response.data.data.map(item => item.title);
 
         if (actualTitle.length > 0) {
-           const matchingTitle = actualTitle.find(item => item.title.includes('1001'));
+           const matchingTitle = actualTitle.find(title => title.includes('1001'));
            assert.isOk(matchingTitle, 'Title containing "1001" should be found');
         } else {
-            //console.log('Actual Titles: ', response.data.data.map(item => item.title));
+            console.log('Actual Titles: ', actualTitle);
             assert.fail('Result is empty');
         }
 
     });
 
     it('Return empty when there is no result', async() => {
-        const response = await axios.get(createURL('search?Keyword=Nonexistantkey'));
-        assert.equal(response.status, 404);
-        assert.isEmpty(response.data.data, 'Response should be empty');
-    });
+        try {
+            const response = await axios.get(createURL('search?Keyword=Nonexistantkey'));
+            assert.equal(response.status, 404);
+            assert.isNull(response.data.data, 'Response should be empty');
+    
+        } catch (error){
+            // Cek apakah error adalah error 404
+            assert.equal(error.response.status, 404, 'Expected status code 404');
+            // Cek juga apakah body dari respons adalah data yang kosong
+            assert.isNull(error.response.data.data, 'Response should be empty');
+        }
+        });
 });
