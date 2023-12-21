@@ -5,12 +5,9 @@ var PropertiesReader = require("properties-reader");
 var properties = PropertiesReader("config/env.properties");
 const baseURL = properties.get("devURI");
 const createURL = (path) => `${baseURL}${path}`;
-// Import objek JSON yang ingin diuji
-
-
 
 // Deskripsi dari test case
-describe('JSON Matching Test', () => {
+describe('Ensure the data has match (Confirmed and Unconfirmed)', () => {
     it('Mythic Confirmed', async() => {
     const api = supertest(createURL('confirmed/mythic'));
     const response = await api.get('');
