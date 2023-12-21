@@ -30,6 +30,7 @@ input this script into package.json
     }
 }
 
+create config folder in the project
 create env.properties file in folder config, and input the url link
 
 *{
