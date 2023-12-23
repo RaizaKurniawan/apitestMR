@@ -196,7 +196,7 @@ describe('Search feature Test', async() => {
 });
 
 describe('Search for a random keyword', async() => {
-    it.only('Should get result match response based on random keyword', async() => {
+    it('Should get result match response based on random keyword', async() => {
         const response = await axios.get(createURL('search?key='));
         assert.equal(response.status, 200);
 
