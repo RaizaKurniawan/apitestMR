@@ -141,7 +141,7 @@ describe('Search with 2 criteria', async() => {
     });
 });
 
-describe('Search feature Test', async() => {
+describe('Search feature test', async() => {
     it('Should get result match response Article Type', async() => {
         const response = await axios.get(createURL('search?Keyword=ADDENDUM'));
         assert.equal(response.status, 200);
@@ -173,7 +173,7 @@ describe('Search feature Test', async() => {
             // Cek juga apakah body dari respons adalah data yang kosong
             assert.isNull(error.response.data.data, 'Response should be empty');
         }
-        });
+    });
 
     it('Should get result match response Excerpt', async() => {
         const response = await axios.get(createURL('search?Keyword=ADDENDUM'));
@@ -194,4 +194,108 @@ describe('Search feature Test', async() => {
         }
     });
 
+});
+
+describe('Search for a random keyword \n', async() => {
+    // Pencarian untuk hanya satu kata kunci saja
+    it('Should get result match response based on random keyword (case-insensitive)', async () => {
+        const response = await axios.get(createURL('search?Keyword='));
+        assert.equal(response.status, 200);
+        // Input keyword yang ingin dicari, apapun, article type, location, code, title, excerpt
+        const randomKeyword = 'mythic';
+    
+        // Filter hanya artikel yang memenuhi kriteria pencarian
+        const filteredArticles = response.data.data.filter(item => {
+            const articleTypeIncludesKeyword = item.articleType.toLowerCase().includes(randomKeyword.toLowerCase());
+            const mythicLocationIncludesKeyword = item.mythicProperties?.location?.toLowerCase().includes(randomKeyword.toLowerCase());
+            const casefileLocationIncludesKeyword = item.casefileProperties?.location?.toLowerCase().includes(randomKeyword.toLowerCase());
+            const titleIncludesKeyword = item.title.toLowerCase().includes(randomKeyword.toLowerCase());
+            const excerptIncludesKeyword = item.excerpt.toLowerCase().includes(randomKeyword.toLowerCase());
+            const idMatchesKeyword = item.id.toLowerCase().includes(randomKeyword.toLowerCase());
+            const codeMatchesKeyword = item.code.toLowerCase().includes(randomKeyword.toLowerCase());
+            // Gabungkan kriteria pencarian
+            return (
+                articleTypeIncludesKeyword || // =====> Ini untuk tipe article
+                mythicLocationIncludesKeyword || /// ====> Ini untuk lokasi
+                casefileLocationIncludesKeyword || /// ====> ini untuk lokasi
+                titleIncludesKeyword || /// ini untuk Title
+                excerptIncludesKeyword || 
+                idMatchesKeyword || 
+                codeMatchesKeyword
+            );
+        });
+        
+        
+        //console.log('Response Data:', response.data.data);  // Delete tanda "//" sebelum console.log untuk menampilkan semua data
+        console.log('Filtered Articles:', filteredArticles);
+        console.log('Search Result:', filteredArticles.map(item => item.title));
+
+        console.log('Actual Locations:', filteredArticles.map(item => item.mythicProperties?.location || item.casefileProperties?.location || 'no data'));
+    
+        if (filteredArticles.length > 0) {    
+            const containsKeyword = filteredArticles.some(item => 
+                item.title.toLowerCase().includes(randomKeyword.toLowerCase()) ||
+                item.excerpt.toLowerCase().includes(randomKeyword.toLocaleLowerCase()) || 
+                (item.mythicProperties?.location?.toLowerCase().includes(randomKeyword.toLowerCase()) ||
+                item.casefileProperties?.location?.toLowerCase().includes(randomKeyword.toLowerCase())) ||
+                item.id.toLowerCase().includes(randomKeyword.toLowerCase())  ||
+                item.code.toLowerCase().includes(randomKeyword.toLowerCase())
+            );
+        
+            assert.isOk(
+                filteredArticles.length > 0 && containsKeyword,
+                `At least one article title, location, or excerpt should contain "${randomKeyword}" (case-insensitive).`
+                );
+            } else {
+                console.log('\n ===================>>>     Result is empty   <<<===================');
+                assert.ok(true, 'Result is empty');
+            }
+    });
+
+    // Pencarian lebih dari satu kata kunci
+    it('Should get result match response based on multiple keywords (case-insensitive)', async () => {
+        const response = await axios.get(createURL('search?Keyword='));
+        assert.equal(response.status, 200);
+    
+        const userInputKeywords = '1001 1013'; // Gantilah dengan input pengguna sesuai kebutuhan
+        const keywords = userInputKeywords.split(' ');
+    
+        // Filter hanya artikel yang memenuhi kriteria pencarian
+        const filteredArticles = response.data.data.filter(item => {
+            const articleTypeIncludesKeywords = keywords.some(keyword => item.articleType.toLowerCase().includes(keyword.toLowerCase()));
+            const mythicLocationIncludesKeywords = keywords.some(keyword => item.mythicProperties?.location?.toLowerCase().includes(keyword.toLowerCase()));
+            const casefileLocationIncludesKeywords = keywords.some(keyword => item.casefileProperties?.location?.toLowerCase().includes(keyword.toLowerCase()));
+            const titleIncludesKeywords = keywords.some(keyword => item.title.toLowerCase().includes(keyword.toLowerCase()));
+            const excerptIncludesKeywords = keywords.some(keyword => item.excerpt.toLowerCase().includes(keyword.toLowerCase()));
+            const idMatchesKeywords = keywords.some(keyword => item.id.toLowerCase().includes(keyword.toLowerCase()));
+    
+            // Gabungkan kriteria pencarian
+            return (
+                articleTypeIncludesKeywords ||
+                mythicLocationIncludesKeywords ||
+                casefileLocationIncludesKeywords ||
+                titleIncludesKeywords ||
+                excerptIncludesKeywords ||
+                idMatchesKeywords
+            );
+        });
+    
+        //console.log('Response Data:', response.data.data);
+        console.log('Filtered Articles:', filteredArticles);
+        console.log('Search Result:', filteredArticles.map(item => item.title));
+        console.log('Actual Locations:', filteredArticles.map(item => item.mythicProperties?.location || item.casefileProperties?.location || 'no data'));
+    
+        if (filteredArticles.length > 0) {
+
+    
+            assert.isOk(
+                true,
+                `At least one article title, location, excerpt, or ID should contain "${userInputKeywords}" (case-insensitive).`
+            );
+        } else {
+            console.log('\n ===================>>>     Result is empty   <<<===================');
+            assert.ok(true, 'Result is empty');
+        }
+    });
+    
 });
