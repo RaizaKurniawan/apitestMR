@@ -5,3 +5,4 @@ log/*
 test-results/
 *.html
 config
+mochawesome-report/
