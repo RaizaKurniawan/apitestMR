@@ -197,7 +197,7 @@ describe('Search feature test', async() => {
 
 describe('Search for a random keyword \n', async() => {
     // Pencarian untuk hanya satu kata kunci saja
-    it('Should get result match response based on random keyword (case-insensitive)', async () => {
+    it.only('Should get result match response based on random keyword (case-insensitive)', async () => {
         const response = await axios.get(createURL('search?Keyword='));
         assert.equal(response.status, 200);
         // Input keyword yang ingin dicari, apapun, article type, location, code, title, excerpt
@@ -212,6 +212,9 @@ describe('Search for a random keyword \n', async() => {
             const excerptIncludesKeyword = item.excerpt.toLowerCase().includes(randomKeyword.toLowerCase());
             const idMatchesKeyword = item.id.toLowerCase().includes(randomKeyword.toLowerCase());
             const codeMatchesKeyword = item.code.toLowerCase().includes(randomKeyword.toLowerCase());
+            const dossierLocationIncludesKeyword = item.dossierProperties?.location?.toLowerCase().includes(randomKeyword.toLowerCase());
+            const addendumLocationIncludesKeyword = item.addendumProperties?.location?.toLowerCase().includes(randomKeyword.toLowerCase());
+
             // Gabungkan kriteria pencarian
             return (
                 articleTypeIncludesKeyword || // =====> Ini untuk tipe article
@@ -220,7 +223,9 @@ describe('Search for a random keyword \n', async() => {
                 titleIncludesKeyword || /// ini untuk Title
                 excerptIncludesKeyword || 
                 idMatchesKeyword || 
-                codeMatchesKeyword
+                codeMatchesKeyword ||
+                dossierLocationIncludesKeyword ||
+                addendumLocationIncludesKeyword
             );
         });
         
@@ -252,11 +257,11 @@ describe('Search for a random keyword \n', async() => {
     });
 
     // Pencarian lebih dari satu kata kunci
-    it('Should get result match response based on multiple keywords (case-insensitive)', async () => {
+    it.only('Should get result match response based on multiple keywords (case-insensitive)', async () => {
         const response = await axios.get(createURL('search?Keyword='));
         assert.equal(response.status, 200);
     
-        const userInputKeywords = '1001 1013'; // Gantilah dengan input pengguna sesuai kebutuhan
+        const userInputKeywords = '1234 1001 1022'; // Gantilah dengan input pengguna sesuai kebutuhan
         const keywords = userInputKeywords.split(' ');
     
         // Filter hanya artikel yang memenuhi kriteria pencarian
@@ -267,22 +272,28 @@ describe('Search for a random keyword \n', async() => {
             const titleIncludesKeywords = keywords.some(keyword => item.title.toLowerCase().includes(keyword.toLowerCase()));
             const excerptIncludesKeywords = keywords.some(keyword => item.excerpt.toLowerCase().includes(keyword.toLowerCase()));
             const idMatchesKeywords = keywords.some(keyword => item.id.toLowerCase().includes(keyword.toLowerCase()));
+            const dossierLocationIncludesKeywords = keywords.some(keyword => item.dossierProperties?.location?.toLowerCase().includes(keyword.toLowerCase()));
+            const addendumLocationIncludesKeywords = keywords.some(keyword => item.addendumProperties?.location?.toLowerCase().includes(keyword.toLowerCase()));
+            const codeIncludesKeywords = keywords.some(keyword => item.code?.toLowerCase().includes(keyword.toLowerCase()));
     
             // Gabungkan kriteria pencarian
             return (
-                articleTypeIncludesKeywords ||
+                articleTypeIncludesKeywords || 
                 mythicLocationIncludesKeywords ||
                 casefileLocationIncludesKeywords ||
                 titleIncludesKeywords ||
                 excerptIncludesKeywords ||
-                idMatchesKeywords
+                idMatchesKeywords ||
+                dossierLocationIncludesKeywords ||
+                addendumLocationIncludesKeywords ||
+                codeIncludesKeywords
             );
         });
     
         //console.log('Response Data:', response.data.data);
         console.log('Filtered Articles:', filteredArticles);
         console.log('Search Result:', filteredArticles.map(item => item.title));
-        console.log('Actual Locations:', filteredArticles.map(item => item.mythicProperties?.location || item.casefileProperties?.location || 'no data'));
+        console.log('Actual Locations:', filteredArticles.map(item => item.mythicProperties?.location || item.casefileProperties?.location || item.dossierProperties?.location ||  item.addendumProperties?.location || 'no data'));
     
         if (filteredArticles.length > 0) {
 
