@@ -197,7 +197,7 @@ describe('Search feature test', async() => {
 
 describe('Search for a random keyword \n', async() => {
     // Pencarian untuk hanya satu kata kunci saja
-    it.only('Should get result match response based on random keyword (case-insensitive)', async () => {
+    it('Should get result match response based on random keyword (case-insensitive)', async () => {
         const response = await axios.get(createURL('search?Keyword='));
         assert.equal(response.status, 200);
         // Input keyword yang ingin dicari, apapun, article type, location, code, title, excerpt
@@ -257,7 +257,7 @@ describe('Search for a random keyword \n', async() => {
     });
 
     // Pencarian lebih dari satu kata kunci
-    it.only('Should get result match response based on multiple keywords (case-insensitive)', async () => {
+    it('Should get result match response based on multiple keywords (case-insensitive)', async () => {
         const response = await axios.get(createURL('search?Keyword='));
         assert.equal(response.status, 200);
     
