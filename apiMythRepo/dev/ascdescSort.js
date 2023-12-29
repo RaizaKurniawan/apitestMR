@@ -1,11 +1,6 @@
-const axios = require('axios');
-const { expect, assert } = require('chai');
-const { describe } = require('mocha');
-var PropertiesReader = require("properties-reader");
-const supertest = require('supertest');
-var properties = PropertiesReader("config/env.properties");
-const baseURL = properties.get("devURI");
-const createURL = (path) => `${baseURL}${path}`;
+const {
+    axios, expect, assert, supertest, describe, baseURL, createURL,
+} = require('../constants/constants-dev');
 
 describe('Ascending and Descending Mythic Files', async() => {
     // Confirmed Mythic Files

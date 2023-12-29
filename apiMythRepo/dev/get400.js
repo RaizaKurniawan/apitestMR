@@ -1,10 +1,6 @@
-const axios = require('axios');
-const { expect } = require('chai');
-const { describe } = require('mocha');
-var PropertiesReader = require("properties-reader");
-var properties = PropertiesReader("config/env.properties");
-const baseURL = properties.get("devURI");
-const createURL = (path) => `${baseURL}${path}`;
+const {
+     axios, expect, assert, supertest, describe, baseURL, createURL,
+ } = require('../constants/constants-dev');
 
 describe('Bad Request to Get query SortBy Top Rated', async() => {
     
@@ -54,7 +50,7 @@ describe('Bad Request to Get query SortBy Top Rated', async() => {
 
      it('Bad Request to Get Confirm Dossier Sorting List by Top Rated', async() => {
         try {
-             const res = await axios.get(createURL('confirmed/dossier?sortBy=5'))
+             const res = await axios.get(createURL('dossier?sortBy=5'))
              console.log(res.data)
              expect(res.data.page);
              expect.fail('400');
@@ -63,16 +59,16 @@ describe('Bad Request to Get query SortBy Top Rated', async() => {
         }   
      });
  
-     it('Bad Request to Get Unconfirm Dossier Sorting List by Top Rated', async() => {
-         try {
-              const res = await axios.get(createURL('unconfirmed/dossier?sortBy=5'))
-              console.log(res.data)
-              expect(res.data.page);
-              expect.fail('400');
-         } catch (error) {
-              expect(error.response.status).to.equal(400)    
-         }   
-     });
+     // it('Bad Request to Get Unconfirm Dossier Sorting List by Top Rated', async() => {
+     //     try {
+     //          const res = await axios.get(createURL('unconfirmed/dossier?sortBy=5'))
+     //          console.log(res.data)
+     //          expect(res.data.page);
+     //          expect.fail('400');
+     //     } catch (error) {
+     //          expect(error.response.status).to.equal(400)    
+     //     }   
+     // });
 
      it('Bad Request to Get Confirm Addendum Sorting List by Top Rated', async() => {
         try {

@@ -1,10 +1,6 @@
-const axios = require('axios');
-const { expect } = require('chai');
-const { describe } = require('mocha');
-var PropertiesReader = require("properties-reader");
-var properties = PropertiesReader("config/env.properties");
-const baseURL = properties.get("devURI");
-const createURL = (path) => `${baseURL}${path}`;
+const {
+    axios, expect, assert, search, describe, baseURL, createURL,
+} = require('../constants/constants-dev');
 
 describe('Mythic Repository Get API request', async() => {
     it('Should be able to get Confirm Mythic list ', async() => {

@@ -1,11 +1,6 @@
-const axios = require('axios');
-const { expect } = require('chai');
-const { describe } = require('mocha');
-var PropertiesReader = require("properties-reader");
-var properties = PropertiesReader("config/env.properties");
-const baseURL = properties.get("devURI");
-const createURL = (path) => `${baseURL}${path}`;
-
+const {
+    axios, expect, assert, supertest, describe, baseURL, createURL,
+} = require('../constants/constants-dev');
 
 describe('Mythic Repository Get API 404 Response', async() => {
     it('Should not be able to get Confirm Mythic list 404', async() => {

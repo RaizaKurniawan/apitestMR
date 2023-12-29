@@ -1,10 +1,6 @@
-const axios = require('axios');
-const { expect, assert } = require('chai');
-var PropertiesReader = require('properties-reader');
-const { search } = require('superagent');
-var properties = PropertiesReader('config/env.properties');
-const baseURL = properties.get('devURI');
-const createURL = (path) => `${baseURL}${path}`;
+const {
+    axios, expect, assert, search, baseURL, createURL,
+} = require('../constants/constants-dev');
 
 describe('Search feature Test', async() => {
     it('Should get result match response', async() => {
@@ -261,7 +257,7 @@ describe('Search for a random keyword \n', async() => {
         const response = await axios.get(createURL('search?Keyword='));
         assert.equal(response.status, 200);
     
-        const userInputKeywords = '1234 1001 1022'; // Gantilah dengan input pengguna sesuai kebutuhan
+        const userInputKeywords = 'Dossier mythic 1003'; // Gantilah dengan input pengguna sesuai kebutuhan
         const keywords = userInputKeywords.split(' ');
     
         // Filter hanya artikel yang memenuhi kriteria pencarian
