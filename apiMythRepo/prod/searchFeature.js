@@ -1,11 +1,6 @@
-const axios = require('axios');
-const { expect, assert } = require('chai');
-var PropertiesReader = require('properties-reader');
-const { search } = require('superagent');
-var properties = PropertiesReader('config/env.properties');
-const baseURL = properties.get('prodURI');
-const createURL = (path) => `${baseURL}${path}`;
-
+const {
+    axios, expect, assert, search, baseURL, createURL,
+} = require('../constants/constants-dev');
 
 describe('Search feature Test', async() => {
     it('Should get result match response', async() => {

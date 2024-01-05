@@ -1,11 +1,6 @@
-const axios = require('axios');
-const { expect } = require('chai');
-const { describe } = require('mocha');
-var PropertiesReader = require("properties-reader");
-var properties = PropertiesReader("config/env.properties");
-const baseURL = properties.get("uatURI")
-const createURL = (path) => `${baseURL}${path}`;
-
+const {
+    axios, expect, assert, supertest, describe, baseURL, createURL,
+} = require('../constants/constants-uat');
 
 describe('Get query SortBy Top Rated', async() => {
     

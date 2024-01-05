@@ -1,11 +1,7 @@
-const axios = require('axios');
-const { expect } = require('chai');
-const { describe } = require('mocha');
-var PropertiesReader = require("properties-reader");
-var properties = PropertiesReader("config/env.properties");
-const baseURL = properties.get("stagURI");
-const createURL = (path) => `${baseURL}${path}`;
-
+const {
+     axios, expect, assert, supertest, describe, baseURL, createURL,
+ } = require('../constants/constants-stag');
+ 
 describe('Bad Request to Get query SortBy Top Rated', async() => {
     
     it('Bad Request to Get Confirm Mythic Sorting List by Top Rated', async() => {

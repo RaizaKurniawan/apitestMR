@@ -1,11 +1,6 @@
-const chai = require('chai');
-const supertest = require('supertest');
-const assert = chai.assert;
-var PropertiesReader = require("properties-reader");
-var properties = PropertiesReader("config/env.properties");
-const baseURL = properties.get("uatURI");
-const createURL = (path) => `${baseURL}${path}`;
-
+const {
+    axios, expect, assert, supertest, describe, baseURL, createURL,
+} = require('../constants/constants-uat');
 
 // Deskripsi dari test case
 describe('Ensure the data has match (Confirmed and Unconfirmed)', () => {
