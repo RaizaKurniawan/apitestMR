@@ -36,7 +36,7 @@ describe('Get query SortBy Top Rated', async() => {
     });
 
     it('Get Confirm Dossier Sorting List by Top Rated', async() => {
-        const res = await axios.get(createURL('confirmed/dossier'), { sortBy: 'TOPRATED'})
+        const res = await axios.get(createURL('dossier'), { sortBy: 'TOPRATED'})
         console.log(JSON.stringify(res.data.data, null, 2));
         expect(res.data.page);
         expect(res.status).to.equal(200);
@@ -103,7 +103,7 @@ describe('Get query SortBy Lowest Code', async() => {
     });
 
     it('Get Confirm Dossier Sorting List by Lowest Code', async() => {
-        const res = await axios.get(createURL('confirmed/dossier'), { sortBy: 'LOWESTCODE'})
+        const res = await axios.get(createURL('dossier'), { sortBy: 'LOWESTCODE'})
         console.log(JSON.stringify(res.data.data, null, 2));
         expect(res.data.page);
         expect(res.status).to.equal(200);
@@ -170,7 +170,7 @@ describe('Get query SortBy Highest Code', async() => {
     });
 
     it('Get Confirm Dossier Sorting List by Highest Code', async() => {
-        const res = await axios.get(createURL('confirmed/dossier'), { sortBy: 'HIGHESTCODE'})
+        const res = await axios.get(createURL('dossier'), { sortBy: 'HIGHESTCODE'})
         console.log(JSON.stringify(res.data.data, null, 2));
         expect(res.data.page);
         expect(res.status).to.equal(200);
@@ -238,7 +238,7 @@ describe('Get query SortBy Latest Submision Date', async() => {
     });
 
     it('Get Confirm Dossier Sorting List by Latest Submision Date', async() => {
-        const res = await axios.get(createURL('confirmed/dossier'), { sortBy: 'LATESSUBMISSIONDATE'})
+        const res = await axios.get(createURL('dossier'), { sortBy: 'LATESSUBMISSIONDATE'})
         console.log(JSON.stringify(res.data.data, null, 2));
         expect(res.data.page);
         expect(res.status).to.equal(200);

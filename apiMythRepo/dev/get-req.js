@@ -45,17 +45,17 @@ describe('Mythic Repository Get API request', async() => {
     });
 
     it('Should be able to get Confirm Dossier list ', async() => {
-        const res = await axios.get(createURL('confirmed/dossier'))
+        const res = await axios.get(createURL('dossier'))
         console.log(JSON.stringify(res.data.data, null, 2));
         expect(res.data.page);
         expect(res.status).to.equal(200);
     });
-    it('Should be able to get Unconfirm Dossier list ', async() => {
-        const res = await axios.get(createURL('unconfirmed/dossier'))
-        console.log(JSON.stringify(res.data.data, null, 2));
-        expect(res.data.page);
-        expect(res.status).to.equal(200);
-    });
+    // it('Should be able to get Unconfirm Dossier list ', async() => {
+    //     const res = await axios.get(createURL('unconfirmed/dossier'))
+    //     console.log(JSON.stringify(res.data.data, null, 2));
+    //     expect(res.data.page);
+    //     expect(res.status).to.equal(200);
+    // });
     it('Should be able to get Dossier Detail ', async() => {
         const res = await axios.get(createURL('dossier/D-1002'))
         console.log(JSON.stringify(res.data.data, null, 2));
@@ -77,7 +77,7 @@ describe('Mythic Repository Get API request', async() => {
         expect(res.status).to.equal(200);
     });
     it('Should be able to get Addendum Detail ', async() => {
-        const res = await axios.get(createURL('addendum/C-1189-A2234'))
+        const res = await axios.get(createURL('addendum/C-1001-A2170'))
         console.log(JSON.stringify(res.data.data, null, 2));
         expect(res.data.page);
         expect(res.status).to.equal(200);

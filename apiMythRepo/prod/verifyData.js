@@ -1,5 +1,5 @@
 const {
-    axios, expect, assert, supertest, describe, baseURL, createURL,
+    chai, axios, expect, assert, supertest, describe, baseURL, createURL,
 } = require('../constants/constants-dev');
 
 
